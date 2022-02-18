@@ -39,18 +39,18 @@ app.use(bodyParser.urlencoded({
 //   },
 // };
 
-app.use(cors(corsOptions));
-const whiteList = ['http://localhost:3000', 'https://studentmanagement-frontend.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'https://studentmanagement-frontend.herokuapp.com']
 const corsOptions = {
   origin: (origin, callback) => {
-    if (allowedURLs.indexOf(origin) >= 0) {
-      callback(null, true);
+    if(whitelist.indexOf(origin) !== -1 || !origin){
+      callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS'))
     }
-  },
-};
+  }
+}
 
+app.use(cors(corsOptions));
 
 
 // const SESSION_SECRET = process.env
