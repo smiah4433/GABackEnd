@@ -11,7 +11,7 @@ const MONGODB_URI = process.env.MONGODB_URI
 // const MongoDBStore = require('connect-mongodb-session')(session)
 
 // Express Route
-const studentRoute = require('../backend/routes/student.route')
+const studentRoute = require('./routes/student-route')
 
 
 
