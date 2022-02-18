@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const session = require('express-session')
+// const session = require('express-session')
 let mongoose = require('mongoose');
 let cors = require('cors');
 let bodyParser = require('body-parser');
@@ -8,7 +8,7 @@ let dbConfig = require('./database/db');
 require('dotenv').config();
 const PORT = process.env.PORT
 const MONGODB_URI = process.env.MONGODB_URI
-const MongoDBStore = require('connect-mongodb-session')(session)
+// const MongoDBStore = require('connect-mongodb-session')(session)
 
 // Express Route
 const studentRoute = require('../backend/routes/student.route')
@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({
 // };
 
 app.use(cors(corsOptions));
-const whiteList = ['http://localhost:3000', 'https://studentmanagement-frontend.herokuapp.com/create-student']
+const whiteList = ['http://localhost:3000', 'https://studentmanagement-frontend.herokuapp.com']
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedURLs.indexOf(origin) >= 0) {
@@ -53,22 +53,22 @@ const corsOptions = {
 
 
 
-const SESSION_SECRET = process.env
-app.set('trust proxy, 1')
-
-app.use(session({
-  secret: SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoDBStore({
-    uri: process.env.PORT,
-    collection: 'mySessions'
-  }),
-  cookie: {
-    sameSite: 'none',
-    secure: true
-  }
-}))
+// const SESSION_SECRET = process.env
+// app.set('trust proxy, 1')
+//
+// app.use(session({
+//   secret: SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: false,
+//   store: new MongoDBStore({
+//     uri: process.env.PORT,
+//     collection: 'mySessions'
+//   }),
+//   cookie: {
+//     sameSite: 'none',
+//     secure: true
+//   }
+// }))
 
 
 app.use('/students', studentRoute)
