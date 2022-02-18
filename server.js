@@ -22,7 +22,7 @@ mongoose.connect(dbConfig.db).then(() => { console.log('Database successfully co
     console.log('Could not connect to database : ' + error)
   })
 
-const app = express();
+// const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
